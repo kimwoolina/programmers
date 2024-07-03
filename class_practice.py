@@ -4,18 +4,27 @@
 # 1. input을 이용하여 Member 인스턴스 만드는것을 사용자가 터미널에서 할 수 있게 해주세요.
 # 2. post도 터미널에서 생성할 수 있게 해주세요.
 # 3. (심화)비밀번호 해싱이 무엇인지 공부한 후 hashlib 라이브러리를 써서 회원 비밀번호를 해시화하여 저장하게 해주세요.
+import hashlib
 
 class Member:
     def __init__(self, name, username, password):
         self.name = name            # 회원 이름
         self.username = username    # 회원 아이디
-        self.password = password
+        self.password = self.encrypt_pw(password)
 
+    # 비밀번호 암호화
+    def encrypt_pw(self, password):
+        hash_obj = hashlib.sha256()         # SHA-256 해시 객체 생성
+        hash_obj.update(password.encode())  # 데이터 업데이트
+        hash_value = hash_obj.hexdigest(    )#해시 값 추출
+        return hash_value
+    
     # 회원 정보 print
     def display(self):
         print(f"회원 이름 : {self.name}, 회원 아이디: {self.username}")
+    
 
-
+    
 class Post:
     def __init__(self, title, content, author):
         self.title = title
@@ -34,6 +43,7 @@ def add_posts(post_list, post_data):
 def display_member_names(member_list):
     for member in member_list:
         print(f"회원 이름: {member.name}")
+        
 
 # 데이터 준비
 member_data = [
