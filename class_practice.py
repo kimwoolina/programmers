@@ -11,7 +11,7 @@ class Member:
         self.username = username    # 회원 아이디
         self.password = password
 
-    # 회원 정보 print(회원이름과 아이디만 보여주고 비밀번호는 보여줘서는 안됩니다!)
+    # 회원 정보 print
     def display(self):
         print(f"회원 이름 : {self.name}, 회원 아이디: {self.username}")
 
@@ -22,36 +22,60 @@ class Post:
         self.content = content
         self.author = author        # 작성자 Member.username
 
+# 함수 정의
+def add_members(member_list, member_data):
+    for name, username, password in member_data:
+        member_list.append(Member(name, username, password))
 
-# 맴버 리스트 생성 및 객체 생성
+def add_posts(post_list, post_data):
+    for title, content, author in post_data:
+        post_list.append(Post(title, content, author))
+
+def display_member_names(member_list):
+    for member in member_list:
+        print(f"회원 이름: {member.name}")
+
+# 데이터 준비
+member_data = [
+    ("김우린", "kimwoolina", "password1"),
+    ("이상현", "sanghyun", "password2"),
+    ("이새예", "saeye", "password3")
+]
+
+post_data = [
+    ("Title 1", "post 1 content by Lina Kim", "kimwoolina"),
+    ("Title 2", "post 2 content by Lina Kim", "kimwoolina"),
+    ("Title 3", "post 3 content by Lina Kim", "kimwoolina"),
+    ("Title 4", "post 4 content by Sanghyun Lee", "sanghyun"),
+    ("Title 5", "post 5 content by Sanghyun Lee", "sanghyun"),
+    ("Title 6", "post 6 content by Sanghyun Lee", "sanghyun"),
+    ("Title 7", "post 7 content by Saeye Lee", "saeye"),
+    ("Title 8", "post 8 content by Saeye Lee", "saeye"),
+    ("Title 9", "post 9 content by Saeye Lee", "saeye")
+]
+
+# Members 리스트 생성 및 회원 인스턴스 추가
 members = []
-members.append(Member("김우린", "kimwoolina", 1234))
-members.append(Member("이상현", "sanghyun", 3456))
-members.append(Member("이새예", "saeye", 6789))
+add_members(members, member_data)
 
-# 회원 이름 출력
-for member in members:
-    print(member.name)
+# Members 리스트를 돌면서 회원들의 이름 프린트
+display_member_names(members)
 
-
-# 게시글 리스트 생성 및 게시글 객체 생성
+# Posts 리스트 생성 및 게시글 인스턴스 추가
 posts = []
-posts.append(Post("Title 1", "content of post 1 by Lina Kim", "kimwoolina"))
-posts.append(Post("Title 2", "content of post 2 by Lina Kim", "kimwoolina"))
-posts.append(Post("Title 3", "content of post 3 by Lina Kim", "kimwoolina"))
-posts.append(Post("Title 4", "content of post 4 by Sanghyun Lee", "sanghyun"))
-posts.append(Post("Title 5", "content of post 5 by Sanghyun Lee", "sanghyun"))
-posts.append(Post("Title 6", "content of post 6 by Sanghyun Lee", "sanghyun"))
-posts.append(Post("Title 7", "content of post 7 by Saeye Lee", "saeye"))
-posts.append(Post("Title 8", "content of post 8 by Saeye Lee", "saeye"))
-posts.append(Post("Title 9", "content of post 9 by Saeye Lee", "saeye"))
+add_posts(posts, post_data)
 
-# 특정유저(kimwoolina)가 작성한 게시글의 제목을 모두 프린트
-# ‘특정 단어’가 content에 포함된 게시글의 제목을 모두 프린트
+# 특정 유저가 작성한 게시글의 제목 프린트
+username_to_check = "kimwoolina"
+print(f"\nPosts written by {username_to_check}:")
 for post in posts:
-    if post.author == "kimwoolina":
-        print(f"kimwoolina님의 작성한 게시글: {post.title}")
-    
-    if  "Lee" in post.content :
-        print(f"글 내용에 'Lee'가 포함된 게시글: {post.title}")
+    if post.author == username_to_check:
+        print(post.title)
+
+# 특정 단어가 content에 포함된 게시글의 제목 프린트
+keyword_to_check = "Lee"
+print(f"\nPosts containing '{keyword_to_check}' in content:")
+for post in posts:
+    if keyword_to_check in post.content:
+        print(post.title)
 
