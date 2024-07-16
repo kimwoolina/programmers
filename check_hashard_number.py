@@ -1,5 +1,5 @@
-def solution(x):
+def solution(n):
     return n%sum(int(x) for x in str(n)) == 0
 
-x = input()
-solution(x)
+n = int(input())
+print(solution(n))

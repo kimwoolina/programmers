@@ -1,5 +1,7 @@
-import sys
-sys.setrecursionlimit(10**7)
+# import sys
+# sys.setrecursionlimit(10**7)
+
+# 재귀함수 사용
 
 def factorial(i):
     if i == 0:
