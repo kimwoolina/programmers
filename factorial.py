@@ -12,6 +12,7 @@ def factorial(i):
 
 def solution(n):
     for i in range(1, 3628800):
+        # while factorial(i) < n 써도됨
         if factorial(i) < n:
             pass
         elif factorial(i) > n:
