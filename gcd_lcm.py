@@ -20,3 +20,18 @@ n, m = map(int, input().strip().split(' '))
 
 result = calculate_gcd_lcm(n, m)
 print(result)
+
+# 다른 방법
+def gcdlcm1(a, b):
+    c,d = max(a, b), min(a, b)
+    t = 1
+    while t>0:
+        t = c%d
+        c, d = d, t
+    answer = [ c, int (a*b/c)]
+    return answer
+
+def gcdlcm2(a, b):
+    for i in range(a):
+        if a%(a-i)+b%(a-i) == 0:
+            return [a-i, a*b/(a-i)]
