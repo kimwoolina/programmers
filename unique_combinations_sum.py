@@ -5,12 +5,15 @@ def solution(numbers):
     
     for i in range(len(numbers)):
         for j in range(i+1, len(numbers)):
-            if i == j:
-                continue
-            if numbers[i] + numbers[j] not in answer:
-                answer.append(numbers[i] + numbers[j])
+            answer.append(numbers[i] + numbers[j])
     
     return sorted(list(set(answer)))
+
+
+# from itertools import combinations
+# def solution(numbers):
+#     return sorted(set(sum(i) for i in list(combinations(numbers, 2))))
+
 
 print(solution([2,1,3,4,1])) # [2,3,4,5,6,7]	
 print(solution([5,0,2,7])) # [2,5,7,9,12]
