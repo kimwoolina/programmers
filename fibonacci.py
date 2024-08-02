@@ -2,14 +2,16 @@
 # F(n) = F(n-1) + F(n-2) 
 
 def solution(n):
-    if n == 0:
-        return 0
-    if n == 1:
-        return 1
+    MOD = 1234567
+
+    a, b = 0, 1
     
-    result = ( solution(n-1) + solution(n-2) ) % 1234567
-    return result
+    # n이 2 이상이라는 제약이 있으므로, 반복문을 2부터 n까지 실행
+    for _ in range(2, n + 1):
+        a, b = b, (a + b) % MOD
+    
+    return b
 
-
-print(solution(3))
-print(solution(5))
+# test
+print(solution(3))  # 2
+print(solution(5))  # 5
