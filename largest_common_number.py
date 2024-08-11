@@ -20,7 +20,6 @@ def solution(X, Y):
     if common_digits and common_digits[0] == '0':
         return '0'
 
-    
     # 공통 숫자가 없는 경우 -1 반환
     if not common_digits:
         return '-1'
